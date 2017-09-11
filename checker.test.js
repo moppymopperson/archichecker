@@ -31,10 +31,30 @@ describe('checker.js', () => {
       })
   })
 
+  it('throws an error if the getIncludes path is bad', () => {
+    return checker.getIncludes('asfdasdf').catch(error => {
+      expect(error).toBeDefined()
+    })
+  })
+
   it('extracts file level form a header', () => {
     const filepath = './testdir/nesteddir/headerB.h'
     return checker.getFileLevel(filepath).then(level => {
       expect(level).toBe(5)
+    })
+  })
+
+  it('throws and error if there is a header missing a level', () => {
+    const filepath = './testdir3/headerX.h'
+    return checker.getFileLevel(filepath).catch(error => {
+      expect(error).toBeDefined()
+    })
+  })
+
+  it('throws an error if the file does not exist', () => {
+    const filepath = 'asdf.psd'
+    return checker.getFileLevel(filepath).catch(error => {
+      expect(error).toBeDefined()
     })
   })
 
@@ -58,8 +78,13 @@ describe('checker.js', () => {
   })
 
   it('detects missing files', () => {
-    return
-    checker.runInspection('./testdir').catch(error => {
+    return checker.runInspection('./testdir').catch(error => {
+      expect(error).toBeDefined()
+    })
+  })
+
+  it('detects when levels are mismatched', () => {
+    return checker.runInspection('./testdir4').catch(error => {
       expect(error).toBeDefined()
     })
   })

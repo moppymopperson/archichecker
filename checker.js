@@ -2,25 +2,6 @@
 const fs = require('fs')
 const walk = require('walk')
 
-if (process.argv.length < 3) {
-  console.log('You must provide a directory')
-  process.exit(1)
-} else if (process.argv.length > 3) {
-  console.log('checker only takes one argument, the directory')
-  process.exit(1)
-}
-
-const directory = process.argv[2]
-runInspection(directory)
-  .then(() => {
-    console.log('Success! Architecture is in good shape!')
-  })
-  .catch(error => {
-    console.log(error)
-  })
-
-/*******************************************************************/
-
 /**
  * Returns a Promise for an an array of objects containing a 
  * filename and a path for each of the files in the given directory.
@@ -64,7 +45,10 @@ function filterCppFiles(files) {
 function getIncludes(filepath) {
   return new Promise((resolve, reject) => {
     fs.readFile(filepath, (error, data) => {
-      if (error) reject(error)
+      if (error) {
+        reject(error)
+        return
+      }
       const text = data.toString()
       let includes = []
       const regex = /#include ((<[^>]+>)|"([^"]+)")/g
@@ -89,7 +73,10 @@ function getIncludes(filepath) {
 function getFileLevel(filepath) {
   return new Promise((resolve, reject) => {
     fs.readFile(filepath, (error, data) => {
-      if (error) reject(error)
+      if (error) {
+        reject(error)
+        return
+      }
       const text = data.toString()
       const regex = /\/\/\s*@level\s+(\d)/
       const match = regex.exec(text)
