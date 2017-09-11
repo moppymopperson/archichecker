@@ -1,0 +1,15 @@
+{
+  "name": "importchecker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "walk": "^2.3.9"
+  },
+  "devDependencies": {
+    "jest": "^21.0.2"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
