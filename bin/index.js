@@ -1,4 +1,5 @@
-const runInspection = require('./checker').runInspection
+#!/usr/bin/env node
+const runInspection = require('../lib/checker').runInspection
 
 if (process.argv.length < 3) {
   console.log('You must provide a directory')

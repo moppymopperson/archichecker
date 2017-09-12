@@ -1,7 +1,12 @@
 {
-  "name": "importchecker",
+  "name": "archicheck",
+  "author": "Erik Hornberger",
+  "description": "clang architecture checker",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./bin/index.js",
+  "bin": {
+    "archicheck": "./bin/index.js"
+  },
   "license": "MIT",
   "dependencies": {
     "walk": "^2.3.9"
