@@ -3,6 +3,10 @@
   "author": "Erik Hornberger",
   "description": "clang architecture checker",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moppymopperson/archichecker"
+  },
   "main": "./bin/index.js",
   "bin": {
     "archicheck": "./bin/index.js"
