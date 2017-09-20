@@ -15,5 +15,5 @@ runInspection(directory)
     console.log('Success! Architecture is in good shape!')
   })
   .catch(error => {
-    console.log(error)
+    console.log(error.message)
   })
